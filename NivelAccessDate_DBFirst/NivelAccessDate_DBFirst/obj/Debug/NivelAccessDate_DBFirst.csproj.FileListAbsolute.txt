@@ -1,0 +1,15 @@
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\NivelAccessDate_DBFirst.dll.config
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\NivelAccessDate_DBFirst.dll
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\NivelAccessDate_DBFirst.pdb
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\EntityFramework.dll
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\Repository_DBFirst.dll
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\Repository_DBFirst.pdb
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\Repository_DBFirst.dll.config
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\EntityFramework.xml
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\obj\Debug\NivelAccessDate_DBFirst.csproj.AssemblyReference.cache
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\obj\Debug\NivelAccessDate_DBFirst.csproj.CoreCompileInputs.cache
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\obj\Debug\NivelAcc.AB878A75.Up2Date
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\obj\Debug\NivelAccessDate_DBFirst.dll
+C:\Users\wadick\source\repos\NivelAccessDate_DBFirst\NivelAccessDate_DBFirst\obj\Debug\NivelAccessDate_DBFirst.pdb
