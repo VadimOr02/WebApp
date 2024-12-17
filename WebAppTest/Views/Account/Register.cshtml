@@ -1,0 +1,49 @@
+﻿@model WebAppTest.Models.RegisterViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Înregistrare</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Înregistrare</h2>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nume)
+                @Html.TextBoxFor(m => m.Nume, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Nume, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Parola)
+                @Html.PasswordFor(m => m.Parola, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Parola, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmParola)
+                @Html.PasswordFor(m => m.ConfirmParola, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ConfirmParola, null, new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">Înregistrează-te</button>
+            <a href="@Url.Action("Login", "Account")" class="btn btn-link">Am deja un cont</a>
+        }
+    </div>
+</body>
+</html>

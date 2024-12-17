@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BusinessLayer.Models.FotografiiViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista Fotografii</title>
+    <link rel="stylesheet" href="~/Content/editare-fotografii.css" />
+</head>
+<body>
+    <div>
+        <h2>Bun venit, @Session["UserName"]</h2>
+        <a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a>
+    </div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista Fotografii</h1>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="row">
+                @foreach (var foto in Model)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@foto.Nume_Fisier</h5>
+                                <p class="card-text">Data Încărcare: @foto.Data_Incarcare</p>
+                                <a href="@Url.Action("EditareFotografie", "Fotografii", new { id = foto.Id })" class="btn btn-primary">Editare</a>
+                                <a href="@Url.Action("Delete", "Fotografii", new { id = foto.Id })" class = "btn btn-danger">Sterge</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info"><p>Nu există fotografii disponibile. <a href="@Url.Action("Create", "Fotografii")">Adaugă acum</a></p></div>
+        }
+    </div>
+</body>
+</html>

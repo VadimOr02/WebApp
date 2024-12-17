@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "User Management";
+}
+
+<h2>Lista utilizatori</h2>
+
+<div id="userTableContainer">
+    <table id="userTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nume</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Data Înregistrare</th>
+                <th>Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Conținutul va fi generat dinamic -->
+        </tbody>
+    </table>
+</div>
+
+<button id="createUserBtn" class="btn btn-primary">Adaugă utilizator</button>
+
+<!-- Formular pentru adăugare/editare utilizator -->
+<div id="userFormContainer" style="display: none; margin-top: 20px;">
+    <h3 id="formTitle">Adaugă utilizator</h3>
+    <form id="userForm">
+        <div class="form-group">
+            <label for="name">Nume:</label>
+            <input type="text" id="name" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="role">Rol:</label>
+            <select id="role" class="form-control" required>
+                <option value="1">Admin</option>
+                <option value="0">User</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Salvează</button>
+        <button type="button" id="cancelFormBtn" class="btn btn-secondary">Anulează</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const apiUrl = '/User/GetAll'; // Apel API pentru obținerea utilizatorilor
+
+    $(document).ready(function () {
+        // Obține și afișează utilizatorii
+        fetchUsers();
+
+        // Eveniment pentru butonul de adăugare
+        $('#createUserBtn').click(function () {
+            showForm();
+        });
+
+        // Gestionarea formularului pentru adăugare/editare
+        $('#userForm').submit(function (event) {
+            event.preventDefault();
+            saveUser();
+        });
+
+        // Anulează formularul
+        $('#cancelFormBtn').click(function () {
+            $('#userFormContainer').hide();
+        });
+    });
+
+    // Funcția pentru obținerea și afișarea utilizatorilor
+    function fetchUsers() {
+        $.get(apiUrl, function (data) {
+            const tableBody = $('#userTable tbody');
+            tableBody.empty();
+            data.forEach(user => {
+                const row = `<tr>
+                    <td>${user.Id}</td>
+                    <td>${user.Nume}</td>
+                    <td>${user.Email}</td>
+                    <td>${user.Rol === 1 ? 'Admin' : 'User'}</td>
+                    <td>${new Date(user.DataInregistrare).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editUser(${user.Id})">Editare</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.Id})">Ștergere</button>
+                    </td>
+                </tr>`;
+                tableBody.append(row);
+            });
+        });
+    }
+
+    // Funcția pentru salvarea unui utilizator
+    function saveUser() {
+        const userId = $('#userForm').data('id');
+        const user = {
+            Nume: $('#name').val(),
+            Email: $('#email').val(),
+            Rol: $('#role').val(),
+        };
+
+        if (userId) {
+            // Editare utilizator
+            $.ajax({
+                url: `/User/Edit`,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(user),
+                success: function () {
+                    fetchUsers();
+                    $('#userFormContainer').hide();
+                }
+            });
+        } else {
+            // Adăugare utilizator
+            $.post('/User/Create', user, function () {
+                fetchUsers();
+                $('#userFormContainer').hide();
+            });
+        }
+    }
+
+    // Funcția pentru editarea unui utilizator
+    function editUser(userId) {
+        $.get(`/User/Get/${userId}`, function (data) {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                $('#name').val(data.Nume);
+                $('#email').val(data.Email);
+                $('#role').val(data.Rol);
+                $('#userForm').data('id', data.Id);
+                $('#userFormContainer').show();
+            }
+        });
+    }
+
+    // Funcția pentru ștergerea unui utilizator
+    function deleteUser(userId) {
+        if (confirm('Ești sigur că vrei să ștergi acest utilizator?')) {
+            $.post(`/User/Delete/${userId}`, function () {
+                fetchUsers();
+            });
+        }
+    }
+
+    // Funcția pentru a arăta formularul de adăugare
+    function showForm() {
+        $('#userFormContainer').show();
+        $('#formTitle').text('Adaugă utilizator');
+        $('#userForm').data('id', null);
+    }
+</script>

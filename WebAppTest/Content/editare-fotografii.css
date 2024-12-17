@@ -1,0 +1,38 @@
+﻿.container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+canvas {
+    display: block;
+    margin: 20px auto;
+}
+
+.toolbar {
+    margin-top: 10px;
+}
+
+    .toolbar button {
+        margin: 5px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .toolbar button:hover {
+            background-color: #0056b3;
+        }
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }

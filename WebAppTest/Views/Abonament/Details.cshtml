@@ -1,0 +1,22 @@
+﻿@model Repository_DBFirst.Abonamente
+
+<h2>Detalii Abonament</h2>
+
+<div>
+    <h4>@Model.nume</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.id</dd>
+
+        <dt class="col-sm-2">Pret</dt>
+        <dd class="col-sm-10">@Model.pret</dd>
+
+        <dt class="col-sm-2">Durata</dt>
+        <dd class="col-sm-10">@Model.durata</dd>
+
+        <dt class="col-sm-2">Beneficii</dt>
+        <dd class="col-sm-10">@Model.beneficii</dd>
+    </dl>
+</div>
+<a href="@Url.Action("Index", "Abonament")" class="btn btn-secondary">Înapoi</a>

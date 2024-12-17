@@ -1,0 +1,116 @@
+﻿@model BusinessLayer.Models.FotografiiViewModel
+
+@{
+    ViewBag.Title = "Editare Fotografie";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/editare-fotografii.css" />
+    <title>Edit</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Editare Fotografie</h2>
+
+        <!-- Formul pentru a încărca fișierul -->
+        <div>
+            <input type="file" id="uploadImage" accept="image/*" />
+        </div>
+
+        <!-- Canvas pentru a vizualiza imaginea -->
+        <div>
+            <canvas id="photoCanvas" width="800" height="600" style="border: 1px solid #ccc;"></canvas>
+        </div>
+
+        <!-- Bara de instrumente pentru editare -->
+        <div class="toolbar">
+            <button id="addTextBtn">Adaugă Text</button>
+            <button id="applyGrayscale">Alb-Negru</button>
+            <button id="applySepia">Sepia</button>
+            <button id="saveImage">Salvează Imaginea</button>
+        </div>
+    </div>
+
+
+    <script>
+        // Calea imaginii din model
+        var imageUrl = '@Url.Content(Model.Cale)';
+
+        // Încărcăm imaginea pe canvas la încărcarea paginii
+        window.onload = function () {
+            var photoCanvas = document.getElementById("photoCanvas");
+            var ctx = photoCanvas.getContext("2d");
+            var img = new Image();
+            img.src = imageUrl; // Calea imaginii
+
+            img.onload = function() {
+                // Setăm dimensiunile canvas-ului pe baza imaginii
+                photoCanvas.width = img.width;
+                photoCanvas.height = img.height;
+                // Desenăm imaginea pe canvas
+                ctx.clearRect(0, 0, photoCanvas.width, photoCanvas.height);
+                ctx.drawImage(img, 0, 0);
+            };
+            img.onerror = function () {
+                console.log('Eroare la încărcarea imaginii: ' + imageUrl); 
+            };
+        };
+        document.getElementById('addTextBtn').addEventListener('click', function () {
+            var photoCanvas = document.getElementById('photoCanvas');
+            var ctx = photoCanvas.getContext('2d');
+
+            var text = prompt("Introdu textul pe care vrei să-l adaugi:", "Text exemplu");
+            if (text) {
+                // Setează stilul pentru text
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "red"; // Culoarea textului
+                ctx.fillText(text, 50, 50); // Poziționează textul pe canvas (50px de la stânga și 50px de la sus)
+            }
+        });
+        document.getElementById('applyGrayscale').addEventListener('click', function () {
+            var photoCanvas = document.getElementById('photoCanvas');
+            var ctx = photoCanvas.getContext('2d');
+            var imageData = ctx.getImageData(0, 0, photoCanvas.width, photoCanvas.height);
+            var data = imageData.data;
+
+            // Aplică alb-negru pentru fiecare pixel
+            for (var i = 0; i < data.length; i += 4) {
+                var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                data[i] = data[i + 1] = data[i + 2] = avg; // Redefinește R, G, B cu valoarea medie
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        });
+        document.getElementById('applySepia').addEventListener('click', function () {
+            var photoCanvas = document.getElementById('photoCanvas');
+            var ctx = photoCanvas.getContext('2d');
+            var imageData = ctx.getImageData(0, 0, photoCanvas.width, photoCanvas.height);
+            var data = imageData.data;
+
+            // Aplică efectul sepia
+            for (var i = 0; i < data.length; i += 4) {
+                var r = data[i];
+                var g = data[i + 1];
+                var b = data[i + 2];
+
+                data[i] = Math.min(255, (r * 0.393) + (g * 0.769) + (b * 0.189)); // Redefinește R
+                data[i + 1] = Math.min(255, (r * 0.349) + (g * 0.686) + (b * 0.168)); // Redefinește G
+                data[i + 2] = Math.min(255, (r * 0.272) + (g * 0.534) + (b * 0.131)); // Redefinește B
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        });
+        document.getElementById('saveImage').addEventListener('click', function () {
+            var photoCanvas = document.getElementById('photoCanvas');
+            var dataUrl = photoCanvas.toDataURL('image/png');
+            var link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'edited_image.png';
+            link.click();
+        });
+    </script>
+</body>
+</html>

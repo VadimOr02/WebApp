@@ -1,0 +1,37 @@
+﻿@model WebAppTest.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Autentificare</h2>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Parola)
+                @Html.PasswordFor(m => m.Parola, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Parola, null, new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="@Url.Action("Register", "Account")" class="btn btn-link">Creează un cont</a>
+        }
+    </div>
+</body>
+</html>

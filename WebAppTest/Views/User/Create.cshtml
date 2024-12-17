@@ -1,0 +1,46 @@
+﻿@model WebAppTest.Models.UserViewModel
+
+
+<h2>Create User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Utilizator</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nume, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nume, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nume, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Parola, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Parola, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Parola, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="padding:10px;padding-left:0px;">
+            <input type="submit" value="Creează" class="btn btn-primary" />
+        </div>
+    </div>
+
+</div>
+}
+<a href="@Url.Action("Index", "User")" class="btn btn-secondary">Înapoi</a>
+
+

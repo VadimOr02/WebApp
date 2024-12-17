@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Repository_DBFirst.Abonamente>
+
+<h2>Abonamente List</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nume</th>
+        <th>Pret</th>
+        <th>Durata</th>
+        <th>Beneficii</th>
+        <th>Detalii</th>
+        <th>Editeaza</th>
+    </tr>
+    @foreach (var abonament in Model)
+    {
+        <tr>
+            <td>@abonament.id</td>
+            <td>@abonament.nume</td>
+            <td>@abonament.pret</td>
+            <td>@abonament.durata</td>
+            <td>@abonament.beneficii</td>
+            <td>
+                <a href="@Url.Action("Details", "Abonament", new { id = abonament.id })" class="btn btn-info">Detalii</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Abonament", new { id = abonament.id })" class="btn btn-info">Edit</a>
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <a href="@Url.Action("Create", "Abonament")" class="btn btn-info">Create</a>
+</div>

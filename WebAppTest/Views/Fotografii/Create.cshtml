@@ -1,0 +1,16 @@
+﻿@model BusinessLayer.Models.FotografiiViewModel
+
+<h2>Adaugă o fotografie nouă</h2>
+
+@using (Html.BeginForm("Create", "Fotografii", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="file">Alege un fișier de fotografie</label>
+        <input type="file" name="file" id="file" accept="image/*" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Încarcă Fotografia</button>
+    <a href="@Url.Action("Index", "Fotografii")" class="btn btn-secondary">Înapoi</a>
+}
