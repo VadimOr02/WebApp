@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71d5d0154af147209a3e0cbaac299aa3" Name="Diagram1">
+        <EntityTypeShape EntityType="photoeditModel.Abonamente" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="photoeditModel.Edits" Width="1.5" PointX="8.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="photoeditModel.Fotografii" Width="1.5" PointX="5.875" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="photoeditModel.Utilizatori" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="photoeditModel.FK_Utilizatori_Abonamente" ManuallyRouted="false" />
+        <AssociationConnector Association="photoeditModel.FK__Edits__fotografi__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="photoeditModel.FK__Edits__utilizato__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="photoeditModel.FK__Fotografi__utili__3A81B327" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

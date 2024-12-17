@@ -1,0 +1,12 @@
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\Repository_DBFirst.dll.config
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\Repository_DBFirst.dll
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\Repository_DBFirst.pdb
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\EntityFramework.dll
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\EntityFramework.xml
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\obj\Debug\Repository_DBFirst.csproj.AssemblyReference.cache
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\obj\Debug\Repository_DBFirst.csproj.CoreCompileInputs.cache
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\obj\Debug\Reposito.8548DA8F.Up2Date
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\obj\Debug\Repository_DBFirst.dll
+C:\Users\wadick\source\repos\Repository_DBFirst\Repository_DBFirst\obj\Debug\Repository_DBFirst.pdb

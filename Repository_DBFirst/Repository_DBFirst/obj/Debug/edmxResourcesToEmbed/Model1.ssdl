@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="photoeditModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Abonamente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nume" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="pret" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="durata" Type="int" Nullable="false" />
+    <Property Name="beneficii" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Edits">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fotografie_id" Type="int" Nullable="false" />
+    <Property Name="utilizator_id" Type="int" Nullable="false" />
+    <Property Name="tip_editare" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="data_editare" Type="datetime" Nullable="false" />
+    <Property Name="salvat" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fotografii">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="utilizator_id" Type="int" Nullable="false" />
+    <Property Name="nume_fisier" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="cale" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="data_incarcare" Type="datetime" Nullable="false" />
+    <Property Name="dimensiune" Type="int" Nullable="false" />
+    <Property Name="format" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Utilizatori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nume" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="parola" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="data_inregistrare" Type="datetime" Nullable="false" />
+    <Property Name="abonament_id" Type="int" />
+    <Property Name="rol" Type="int" Nullable="false" />
+    <Property Name="campnou" Type="int" />
+  </EntityType>
+  <Association Name="FK__Edits__fotografi__3F466844">
+    <End Role="Fotografii" Type="Self.Fotografii" Multiplicity="1" />
+    <End Role="Edits" Type="Self.Edits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fotografii">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Edits">
+        <PropertyRef Name="fotografie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Edits__utilizato__403A8C7D">
+    <End Role="Utilizatori" Type="Self.Utilizatori" Multiplicity="1" />
+    <End Role="Edits" Type="Self.Edits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilizatori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Edits">
+        <PropertyRef Name="utilizator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Fotografi__utili__3A81B327">
+    <End Role="Utilizatori" Type="Self.Utilizatori" Multiplicity="1" />
+    <End Role="Fotografii" Type="Self.Fotografii" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilizatori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Fotografii">
+        <PropertyRef Name="utilizator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Utilizatori_Abonamente">
+    <End Role="Abonamente" Type="Self.Abonamente" Multiplicity="0..1" />
+    <End Role="Utilizatori" Type="Self.Utilizatori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Abonamente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Utilizatori">
+        <PropertyRef Name="abonament_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="photoeditModelStoreContainer">
+    <EntitySet Name="Abonamente" EntityType="Self.Abonamente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Edits" EntityType="Self.Edits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fotografii" EntityType="Self.Fotografii" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilizatori" EntityType="Self.Utilizatori" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Edits__fotografi__3F466844" Association="Self.FK__Edits__fotografi__3F466844">
+      <End Role="Fotografii" EntitySet="Fotografii" />
+      <End Role="Edits" EntitySet="Edits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Edits__utilizato__403A8C7D" Association="Self.FK__Edits__utilizato__403A8C7D">
+      <End Role="Utilizatori" EntitySet="Utilizatori" />
+      <End Role="Edits" EntitySet="Edits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Fotografi__utili__3A81B327" Association="Self.FK__Fotografi__utili__3A81B327">
+      <End Role="Utilizatori" EntitySet="Utilizatori" />
+      <End Role="Fotografii" EntitySet="Fotografii" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Utilizatori_Abonamente" Association="Self.FK_Utilizatori_Abonamente">
+      <End Role="Abonamente" EntitySet="Abonamente" />
+      <End Role="Utilizatori" EntitySet="Utilizatori" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="photoeditModelStoreContainer" CdmEntityContainer="photoeditEntities">
+    <EntitySetMapping Name="Abonamente">
+      <EntityTypeMapping TypeName="photoeditModel.Abonamente">
+        <MappingFragment StoreEntitySet="Abonamente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="pret" ColumnName="pret" />
+          <ScalarProperty Name="durata" ColumnName="durata" />
+          <ScalarProperty Name="beneficii" ColumnName="beneficii" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Edits">
+      <EntityTypeMapping TypeName="photoeditModel.Edits">
+        <MappingFragment StoreEntitySet="Edits">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fotografie_id" ColumnName="fotografie_id" />
+          <ScalarProperty Name="utilizator_id" ColumnName="utilizator_id" />
+          <ScalarProperty Name="tip_editare" ColumnName="tip_editare" />
+          <ScalarProperty Name="data_editare" ColumnName="data_editare" />
+          <ScalarProperty Name="salvat" ColumnName="salvat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fotografii">
+      <EntityTypeMapping TypeName="photoeditModel.Fotografii">
+        <MappingFragment StoreEntitySet="Fotografii">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="utilizator_id" ColumnName="utilizator_id" />
+          <ScalarProperty Name="nume_fisier" ColumnName="nume_fisier" />
+          <ScalarProperty Name="cale" ColumnName="cale" />
+          <ScalarProperty Name="data_incarcare" ColumnName="data_incarcare" />
+          <ScalarProperty Name="dimensiune" ColumnName="dimensiune" />
+          <ScalarProperty Name="format" ColumnName="format" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilizatori">
+      <EntityTypeMapping TypeName="photoeditModel.Utilizatori">
+        <MappingFragment StoreEntitySet="Utilizatori">
+          <ScalarProperty Name="campnou" ColumnName="campnou" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="parola" ColumnName="parola" />
+          <ScalarProperty Name="data_inregistrare" ColumnName="data_inregistrare" />
+          <ScalarProperty Name="abonament_id" ColumnName="abonament_id" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
