@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using BusinessLayer.Models;
 using System.Web.Caching;
+using NLog;
 
 namespace BusinessLayer
 {
     public class FotografiiService : IFotografiiService
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IPhotoeditEntities _context;
         private readonly ICache _cacheManager;
 
@@ -64,6 +66,8 @@ namespace BusinessLayer
         // Adaugă o fotografie
         public void AddFotografie(FotografiiViewModel fotografieViewModel)
         {
+            try { 
+            logger.Info("Adding a new fotografie: {Name}", fotografieViewModel.Nume_Fisier);
             var fotografie = new Fotografii
             {
                 utilizator_id = fotografieViewModel.Utilizator_Id,
@@ -76,8 +80,14 @@ namespace BusinessLayer
 
             _context.Fotografii.Add(fotografie);
             _context.SaveChanges();
+            logger.Info("Fotografie {Name} added successfully.", fotografieViewModel.Nume_Fisier);
 
             _cacheManager.Remove("fotografii_user_" + fotografieViewModel.Utilizator_Id);
+        }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error occurred while adding fotografie.");
+            }
         }
 
         // Găsește o fotografie după ID
@@ -104,6 +114,8 @@ namespace BusinessLayer
         }
         public void SoftDeleteFotografie(int id)
         {
+            try { 
+            logger.Info("Attempting to delete fotografie with ID {Id}.", id);
             var fotografie = _context.Fotografii.Find(id);
             if (fotografie != null)
             {
@@ -112,7 +124,17 @@ namespace BusinessLayer
 
                 _cacheManager.Remove("fotografii_user_" + fotografie.utilizator_id);
             }
-        }
+            else
+            {
+                logger.Warn("Fotografie with ID {Id} not found.", id);
+                return;
+            }
+            logger.Info("Fotografie with ID {Id} deleted successfully.", id);
+        }catch (Exception ex)
+    {
+        logger.Error(ex, "Error occurred while deleting fotografie with ID {Id}.", id);
+    }
+}
         public void DeleteFotografie(int id)
         {
             var fotografie = _context.Fotografii.Find(id);

@@ -1,0 +1,4 @@
+2024-12-20 18:19:30.5739|INFO|BusinessLayer.FotografiiService|Attempting to delete fotografie with ID 9.
+2024-12-20 18:19:30.7827|INFO|BusinessLayer.FotografiiService|Fotografie with ID 9 deleted successfully.
+2024-12-20 18:19:37.7151|INFO|BusinessLayer.FotografiiService|Adding a new fotografie: "images.jfif"
+2024-12-20 18:19:37.7783|INFO|BusinessLayer.FotografiiService|Fotografie "images.jfif" added successfully.
